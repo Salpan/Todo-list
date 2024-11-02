@@ -1,8 +1,6 @@
-export type TodoListField = [
-    {
-        id: number;
-        title: string;
-        isComleted: boolean;
-        priority?: null;
-    },
-];
+export type Tasks = {
+    id: number;
+    title: string;
+    isComleted: boolean;
+    priority?: null;
+};

@@ -1,22 +1,30 @@
-import { TodoListField } from '_types/todoList';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import './styles.css';
+import { Tasks } from '_types/todoList';
 
 export const TodoList: FC = () => {
-    const tasks: TodoListField = [
-        {
-            id: 1,
-            title: 'Hello world',
-            isComleted: false,
-        },
-    ];
+    const [tasks, setTasks] = useState<Tasks[]>([]);
+
+    const [taskName, setTaskName] = useState('');
+
+    const handleClick = () => {
+        setTasks([
+            ...tasks,
+            { id: Date.now(), title: taskName, isComleted: false },
+        ]);
+    };
 
     return (
         <div className="container">
             <h1>Tasks</h1>
             <div className="input">
-                <input />
-                <button>Add</button>
+                <input
+                    value={taskName}
+                    onChange={(e) => setTaskName(e.target.value)}
+                />
+                <button type="button" onClick={handleClick}>
+                    Add
+                </button>
             </div>
 
             <ul>

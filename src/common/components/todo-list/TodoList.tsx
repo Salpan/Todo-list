@@ -7,11 +7,13 @@ export const TodoList: FC = () => {
 
     const [taskName, setTaskName] = useState('');
 
-    const handleClick = () => {
-        setTasks([
-            ...tasks,
-            { id: Date.now(), title: taskName, isComleted: false },
-        ]);
+    const addTaskButton = () => {
+        if (taskName.trim() !== '') {
+            setTasks([
+                ...tasks,
+                { id: Date.now(), title: taskName, isComleted: false },
+            ]);
+        }
     };
 
     const call = (id: number) => {
@@ -36,7 +38,7 @@ export const TodoList: FC = () => {
                     value={taskName}
                     onChange={(e) => setTaskName(e.target.value)}
                 />
-                <button type="button" onClick={handleClick}>
+                <button type="button" onClick={addTaskButton}>
                     Add task
                 </button>
             </div>

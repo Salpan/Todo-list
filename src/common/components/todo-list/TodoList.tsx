@@ -1,9 +1,9 @@
-import { FC, useState } from 'react';
+import { FC, useCallback, useState } from 'react';
 import './styles.css';
-import { Tasks } from '_types/todoList';
+import { Task } from '_types/todoList';
 
 export const TodoList: FC = () => {
-    const [tasks, setTasks] = useState<Tasks[]>([]);
+    const [tasks, setTasks] = useState<Task[]>([]);
 
     const [taskName, setTaskName] = useState('');
 
@@ -12,6 +12,20 @@ export const TodoList: FC = () => {
             ...tasks,
             { id: Date.now(), title: taskName, isComleted: false },
         ]);
+    };
+
+    const call = (id: number) => {
+        setTasks(
+            tasks.map((task) =>
+                task.id === id
+                    ? { ...task, isComleted: !task.isComleted }
+                    : task,
+            ),
+        );
+    };
+
+    const deleteButton = (id: number) => {
+        setTasks(tasks.filter((task) => task.id !== id));
     };
 
     return (
@@ -23,13 +37,25 @@ export const TodoList: FC = () => {
                     onChange={(e) => setTaskName(e.target.value)}
                 />
                 <button type="button" onClick={handleClick}>
-                    Add
+                    Add task
                 </button>
             </div>
-
             <ul>
                 {tasks.map((task) => {
-                    return <li key={task.id}>{task.title}</li>;
+                    return (
+                        <li key={task.id}>
+                            {task.title}
+                            <button type="button" onClick={() => call(task.id)}>
+                                Comleted
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => deleteButton(task.id)}
+                            >
+                                Delete
+                            </button>
+                        </li>
+                    );
                 })}
             </ul>
         </div>

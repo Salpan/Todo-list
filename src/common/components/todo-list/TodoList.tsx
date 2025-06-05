@@ -16,6 +16,16 @@ export const TodoList: FC = () => {
         }
     };
 
+    const testButton = (id: number) => () => {
+        setTasks(
+            tasks.map((task) =>
+                task.id === id
+                    ? { ...task, isComleted: !task.isComleted }
+                    : task,
+            ),
+        );
+    };
+
     const call = (id: number) => {
         setTasks(
             tasks.map((task) =>
@@ -45,9 +55,16 @@ export const TodoList: FC = () => {
             <ul>
                 {tasks.map((task) => {
                     return (
-                        <li key={task.id}>
+                        <li
+                            className={
+                                task.isComleted === true
+                                    ? 'isComleted'
+                                    : 'isNotComleted'
+                            }
+                            key={task.id}
+                        >
                             {task.title}
-                            <button type="button" onClick={() => call(task.id)}>
+                            <button type="button" onClick={testButton(task.id)}>
                                 Comleted
                             </button>
                             <button
@@ -60,6 +77,7 @@ export const TodoList: FC = () => {
                     );
                 })}
             </ul>
+            <></>
         </div>
     );
 };

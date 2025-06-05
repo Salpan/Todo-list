@@ -8,3 +8,11 @@
     display: flex;
     flex-direction: row;
 }
+
+.isCompleted {
+    background-color: green;
+}
+
+.isNotComleted {
+    background-color: aliceblue;
+}

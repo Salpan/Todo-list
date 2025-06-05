@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input {
+    display: flex;
+    flex-direction: row;
+}
+
+.isCompleted {
+    background-color: green;
+}
+
+.isNotComleted {
+    background-color: aliceblue;
+}

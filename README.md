@@ -17,7 +17,7 @@ Todo List — минималистичное приложение, разраб�
 
 1. **Клонируйте репозиторий:**
     ```bash
-    git clone https://github.com/Salpan/Todo-list.git
+    git clone https://github.com/Salpan/todo-list.git
     ```
 2. **Перейдите в директорию проекта:**
     ```bash
